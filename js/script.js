@@ -72,20 +72,20 @@ function questionnaireSubmit() {
 
 function questionnaireSKFSubmit() {
 
-    let SKF_Schwartz, SKF_Bedside, SKF_Cistanin, height, creatinin, cistanin, lipokalin;
+    let SKF_Schwartz, SKF_Bedside, SKF_Cistatin, height, creatinin, cistatin, lipokalin;
 
     height = document.querySelector('#height').value;
     creatinin = document.querySelector('#creatinin').value;
-    cistanin = document.querySelector('#cistanin').value;
+    cistatin = document.querySelector('#cistatin').value;
     lipokalin = document.querySelector('#lipokalin').value;
     
     SKF_Schwartz = ((height * 88.4)/creatinin) * 0.55;
     SKF_Bedside = ((height * 88.4)/creatinin) * 0.413;
-    SKF_Cistanin =  70.69 * Math.pow(cistanin, -0.931);
+    SKF_Cistatin =  70.69 * Math.pow(cistatin, -0.931);
 
     let conclusion;
 
-    conclusion = "СКФ по формуле Шварца = " + SKF_Schwartz.toFixed(2) + "\n СКФ по (прикроватной) формуле Шварца = " + SKF_Bedside.toFixed(2) + "\n СКФ на основе содержания Цистатина С = " + SKF_Cistanin.toFixed(2);
+    conclusion = "СКФ по формуле Шварца = " + SKF_Schwartz.toFixed(2) + "\n СКФ по (прикроватной) формуле Шварца = " + SKF_Bedside.toFixed(2) + "\n СКФ на основе содержания Цистатина С = " + SKF_Cistatin.toFixed(2);
 
     let resultModal = document.getElementById("modal__body");
     resultModal.innerText = conclusion;
