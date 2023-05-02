@@ -33,7 +33,7 @@
 
             <div class="form__wrapper">
                 <div class="form__title">
-                    Прогноз развития ОПП у детей с ОКИ
+                    Оценка риска развития острого повреждения почек у детей 1-7 лет при острых кишечных инфекциях
                 </div>
                 <div id="today" class="form__subtitle">1</div>
                 <div class="form__title">
@@ -47,14 +47,14 @@
                         <div class="questionnaire__title">РАСЧЕТ РИСКА РАЗВИТИЯ ОПП</div>
 
                         <div class="question">
-                            <div class="question__text question__text_align">Возраст пациента</div>
+                            <div class="question__text question__text_align">Возраст пациента, полных лет</div>
                             <div class="question__answer">
                                 <input id="age" class="value" placeholder="Введите возраст"></input>
                             </div>
                         </div>
 
                         <div class="question">
-                            <div class="question__text question__text_align">Вес пациента (кг)</div>
+                            <div class="question__text question__text_align">Вес пациента, кг</div>
                             <div class="question__answer">
                                 <input id="weight" class="value" placeholder="Введите вес"></input>
                             </div>
@@ -131,28 +131,52 @@
                         <div class="questionnaire__title">РАСЧЕТ СКОРОСТИ КЛУБОЧКОВОЙ ФИЛЬТРАЦИИ</div>
 
                         <div class="question">
-                            <div class="question__text question__text_align">Рост пациента (см)</div>
+                            <div class="question__text question__text_align">Рост пациента, см</div>
                             <div class="question__answer">
                                 <input id="height" class="value" placeholder="Введите рост"></input>
                             </div>
                         </div>
 
                         <div class="question">
-                            <div class="question__text question__text_align">Креатинин</div>
+                            <div class="question__text question__text_align">
+                                <div class="text">Креатинин</div>
+                                <div class="ed_izmer_wrapper">
+                                    <div class="radio__wrapper">
+                                        <input type="radio" id="creatinin_ans1" name="unit_creatinin" value="l" checked>
+                                        <label for="creatinin_ans1">мкмоль/л</label>
+                                    </div>
+                                    <div class="radio__wrapper">
+                                        <input type="radio" id="creatinin_ans2" name="unit_creatinin" value="ml">
+                                        <label for="creatinin_ans2">мг/мл</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="question__answer">
                                 <input id="creatinin" class="value" placeholder=""></input>
                             </div>
                         </div>
 
                         <div class="question">
-                            <div class="question__text question__text_align">Цистатин</div>
+                            <div class="question__text question__text_align">
+                                <div class="text">Цистатин</div>
+                                <div class="ed_izmer_wrapper">
+                                    <div class="radio__wrapper">
+                                        <input type="radio" id="cistatin_ans1" name="unit_cistatin" value="ml" checked>
+                                        <label for="cistatin_ans1">нг/мл</label>
+                                    </div>
+                                    <div class="radio__wrapper">
+                                        <input type="radio" id="cistatin_ans2" name="unit_cistatin" value="l">
+                                        <label for="cistatin_ans2">мг/л</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="question__answer">
                                 <input id="cistatin" class="value" placeholder=""></input>
                             </div>
                         </div>
 
                         <div class="question question_last">
-                            <div class="question__text question__text_align">Липокалин</div>
+                            <div class="question__text question__text_align">Липокалин, нг/мл</div>
                             <div class="question__answer">
                                 <input id="lipokalin" class="value" placeholder=""></input>
                             </div>
@@ -193,7 +217,8 @@
 
     <footer class="footer__container">
         <div class="container">
-            <p class="float-left">Прогноз развития ОПП у детей с ОКИ</p>
+            <p class="float-left">Оценка риска развития ОПП у детей 1-7 лет при острых кишечных инфекциях
+            </p>
             <p class="float-right">&copy ФБУН Центральный НИИ Эпидемиологии Роспотребнадзора</p>
         </div>
     </footer>

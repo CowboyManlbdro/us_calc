@@ -54,13 +54,15 @@ function questionnaireSubmit() {
     }
         
     z = -4.593 + 1.926 * oki + 1.844 * orvi_six + 1.473 * anemia + 0.226 * age;
-    P = 1/(1 + (Math.exp(-z)) * 100);
+    P = (1/(1 + Math.exp(-z))) * 100;
+    
     let conclusion;
-    if (P >= 0.12) {
-        conclusion = "Есть риск развития ОПП у больного кишечной инфекцией, нужно проверить уровень креатинина, цистатина и липокалина";
+
+    if (P > 12) {
+        conclusion = "У пациента имеется высокий риск развития острого повреждения почек (р=" + P/100 + "). Рекомендуется оценка скорости клубочковой фильтрации, уровня креатинина сыворотки крови, уровня цистатина С и липокалина-2";
     } 
     else {
-        conclusion = "Риск развития ОПП у больного кишечной инфекцией отсутствует";
+        conclusion = "У пациента имеется низкий риск развития острого повреждения почек (р=" + P/100 + "). Рекомендуется оценка уровня креатинина сыворотки крови через 3 дня";
     }
 
     let resultModal = document.getElementById("modal__body");
@@ -72,20 +74,47 @@ function questionnaireSubmit() {
 
 function questionnaireSKFSubmit() {
 
-    let SKF_Schwartz, SKF_Bedside, SKF_Cistatin, height, creatinin, cistatin, lipokalin;
+    let SKF_Schwartz, SKF_Bedside, SKF_Cistatin, height, creatinin, unit_creatinin, unit_cistatin, cistatin, lipokalin;
 
     height = document.querySelector('#height').value;
     creatinin = document.querySelector('#creatinin').value;
     cistatin = document.querySelector('#cistatin').value;
     lipokalin = document.querySelector('#lipokalin').value;
-    
-    SKF_Schwartz = ((height * 88.4)/creatinin) * 0.55;
-    SKF_Bedside = ((height * 88.4)/creatinin) * 0.413;
-    SKF_Cistatin =  70.69 * Math.pow(cistatin, -0.931);
+
+    unit_creatinin = document.querySelector('input[name="unit_creatinin"]:checked').value;
+    unit_cistatin = document.querySelector('input[name="unit_cistatin"]:checked').value;
+
+    if (unit_creatinin == 'l') {
+        SKF_Schwartz = ((height * 88.4)/creatinin) * 0.55;
+        SKF_Bedside = ((height * 88.4)/creatinin) * 0.413;
+    } else {
+        SKF_Schwartz = (height/creatinin) * 0.55;
+        SKF_Bedside = (height/creatinin) * 0.413;
+    }
+
+    if (unit_cistatin == 'l') {
+        SKF_Cistatin =  70.69 * Math.pow(cistatin, -0.931);
+    } else {
+        SKF_Cistatin =  70.69 * Math.pow((cistatin * 0.001), -0.931);
+    }
 
     let conclusion;
 
-    conclusion = "СКФ по формуле Шварца = " + SKF_Schwartz.toFixed(2) + "\n СКФ по (прикроватной) формуле Шварца = " + SKF_Bedside.toFixed(2) + "\n СКФ на основе содержания Цистатина С = " + SKF_Cistatin.toFixed(2);
+    if (((SKF_Schwartz < 80) || (SKF_Bedside < 80)) || 
+        ((unit_creatinin == 'l') && (creatinin > 26.5)) || 
+        ((unit_creatinin == 'ml') && (creatinin > 0.3)) || 
+        ((unit_cistatin == 'l') && (cistatin > 0.956)) || 
+        ((unit_cistatin == 'ml') && (cistatin > 956)) || 
+        (lipokalin > 136.2) ) {
+
+            conclusion = "Выявлено острое повреждение почек I стадии по KDIGO \n(СКФ по формуле Шварца = " + SKF_Schwartz.toFixed(2) + "(мл/мин/1,73м²),\n СКФ по 'Bedside' (прикроватной) формуле Шварца (2009г) = " + SKF_Bedside.toFixed(2) + "(мл/мин/1,73м²),\n СКФ на основе содержания Цистатина С в сыровотке крови = " + SKF_Cistatin.toFixed(2) + "(мл/мин/1,73м²)";
+
+    } 
+    
+    if (((SKF_Schwartz < 80) || (SKF_Bedside < 80)) && (((unit_creatinin == 'l') && (creatinin > 353.6)) || 
+    ((unit_creatinin == 'ml') && (creatinin > 4)))){
+        conclusion = "Выявлено острое повреждение почек III стадии по KDIGO";
+    }
 
     let resultModal = document.getElementById("modal__body");
     resultModal.innerText = conclusion;
