@@ -81,8 +81,6 @@ function questionnaireSKFSubmit() {
     cistatin = document.querySelector('#cistatin').value.replace(',', ".");
     lipokalin = document.querySelector('#lipokalin').value.replace(',', ".");
 
-    console.log(creatinin);
-
     unit_creatinin = document.querySelector('input[name="unit_creatinin"]:checked').value;
     unit_cistatin = document.querySelector('input[name="unit_cistatin"]:checked').value;
 
@@ -109,7 +107,7 @@ function questionnaireSKFSubmit() {
         ((unit_cistatin == 'ml') && (cistatin > 956)) || 
         (lipokalin > 136.2) ) {
 
-            conclusion = "Выявлено острое повреждение почек I стадии по KDIGO \n(СКФ по формуле Шварца = " + SKF_Schwartz.toFixed(2) + "(мл/мин/1,73м²),\n СКФ по 'Bedside' (прикроватной) формуле Шварца (2009г) = " + SKF_Bedside.toFixed(2) + "(мл/мин/1,73м²),\n СКФ на основе содержания Цистатина С в сыровотке крови = " + SKF_Cistatin.toFixed(2) + "(мл/мин/1,73м²)";
+            conclusion = "Выявлено острое повреждение почек I стадии по KDIGO \n(СКФ по формуле Шварца = " + SKF_Schwartz.toFixed(2) + "(мл/мин/1,73м²),\n СКФ по 'Bedside' (прикроватной) формуле Шварца (2009г) = " + SKF_Bedside.toFixed(2) + "(мл/мин/1,73м²),\n СКФ на основе содержания Цистатина С в сыворотке крови = " + SKF_Cistatin.toFixed(2) + "(мл/мин/1,73м²)";
 
     } 
     
