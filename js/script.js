@@ -76,10 +76,12 @@ function questionnaireSKFSubmit() {
 
     let SKF_Schwartz, SKF_Bedside, SKF_Cistatin, height, creatinin, unit_creatinin, unit_cistatin, cistatin, lipokalin;
 
-    height = document.querySelector('#height').value;
-    creatinin = document.querySelector('#creatinin').value;
-    cistatin = document.querySelector('#cistatin').value;
-    lipokalin = document.querySelector('#lipokalin').value;
+    height = document.querySelector('#height').value.replace(',', ".");
+    creatinin = document.querySelector('#creatinin').value.replace(',', ".");
+    cistatin = document.querySelector('#cistatin').value.replace(',', ".");
+    lipokalin = document.querySelector('#lipokalin').value.replace(',', ".");
+
+    console.log(creatinin);
 
     unit_creatinin = document.querySelector('input[name="unit_creatinin"]:checked').value;
     unit_cistatin = document.querySelector('input[name="unit_cistatin"]:checked').value;
